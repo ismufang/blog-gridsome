@@ -16,4 +16,6 @@ const store = new Vuex.Store({
     getters
 })
 
+Vue.prototype.$store = store
+
 export default store
