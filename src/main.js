@@ -17,6 +17,13 @@ import '~/store'
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.prototype.$util = util
+  Vue.prototype.$setTitle = function (title) {
+    if (title) {
+        document.title = store.state.configuration.htmlTitle + " - " + title
+    } else {
+        document.title = store.state.configuration.htmlTitle
+    }
+  }
   Vue.use(Vant)
   Vue.use(ElementUI)
   Vue.use(mavonEditor)

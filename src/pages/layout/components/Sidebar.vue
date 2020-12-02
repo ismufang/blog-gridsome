@@ -58,7 +58,6 @@
         },
         methods: {
             onSelect(index) {
-                console.log({path: index})
                 this.$router.push(index)
             },
             openTokenDialog() {
