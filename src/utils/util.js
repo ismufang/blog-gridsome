@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     cutStr(str, len) {
         try {
             if (str.length > len) {

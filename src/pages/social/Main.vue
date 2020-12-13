@@ -5,24 +5,25 @@
             <el-tabs v-model="activeTab" type="card" @tab-click="onSelect">
                 <el-tab-pane :label="'粉丝 '+followersTotal" name="followers" style="padding: 5px">
                     <div v-loading="followers.loading">
-                        <div v-if="followers.list.length">
+                        <div v-if="$page.followers.edges.length">
                             <el-row style="min-height: 200px; ">
-                                <el-col :span="8" v-for="(item,index) in followers.list" :key="'followers'+index" style="padding: 10px">
+                                <el-col :span="8" v-for="(item,index) in $page.followers.edges" :key="'followers'+index" style="padding: 10px">
                                     <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 20px">
                                         <i class="el-icon-star-off"></i>&emsp;
-                                        <a @click="$router.push(`/user/social/details/${item.name}`)" style=" text-decoration:none;cursor:pointer">{{item.name}}</a>
+                                        <a @click="$router.push(`/social/details/${item.node.name}`)" style=" text-decoration:none;cursor:pointer">{{item.node.name}}</a>
                                         <br>
                                         <i class="el-icon-message"></i>&emsp;
-                                        <a :href="item.htmlUrl" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>
+                                        <a :href="item.node.htmlUrl" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>
                                         <br>
-                                        <img :src="item.avatarUrl" style="width: 100%;border-radius:5px;margin-top: 5px">
+                                        <img :src="item.node.avatarUrl" style="width: 100%;border-radius:5px;margin-top: 5px">
                                     </el-card>
                                 </el-col>
                             </el-row>
                             <div style="text-align: center;margin-top: 10px">
-                                <el-pagination @current-change="onSelect" background layout="prev, pager, next" :current-page.sync="followers.query.page"
+                                <!-- <el-pagination @current-change="onSelect" background layout="prev, pager, next" :current-page.sync="followers.query.page"
                                     :page-size="followers.query.pageSize" :total="followers.query.pageNumber*followers.query.pageSize">
-                                </el-pagination>
+                                </el-pagination> -->
+                                <Pager :info="$page.followers.pageInfo"/>
                             </div>
                         </div>
                         <div style="min-height: 300px;margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-else>
@@ -65,12 +66,34 @@
         </el-card>
     </div>
 </Layout>
-    
+
 </template>
+<page-query>
+query ($page: Int){
+  followers: allFollowers(perPage: 5, page: $page) @paginate {
+      pageInfo {
+      totalPages
+      currentPage
+    }
+    edges {
+      node {
+        id,
+        name,
+        avatarUrl,
+        htmlUrl,
+      }
+    }
+  }
+}
+</page-query>
 <script>
+import { Pager } from 'gridsome'
     import { mapGetters } from 'vuex'
     import UserApi from '@/api/user'
     export default {
+        components: {
+            Pager
+        },
         data() {
             return {
                 activeTab: "followers",
@@ -109,7 +132,7 @@
             onSelect() {
                 switch (this.activeTab) {
                     case "followers":
-                        this.listFollowers()
+                        // this.listFollowers()
                         break
                     case "following":
                         this.listFollowing()

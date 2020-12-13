@@ -109,6 +109,7 @@
     import Sidebar from './components/Sidebar'
     import AppMain from './components/AppMain'
     import Foot from './components/Foot'
+    
     export default {
         name: 'Layout',
         components: {
@@ -178,8 +179,8 @@
             }
         },
         created() {
-            // this.$store.dispatch("Init")
-            // this.$store.dispatch("GetInfo")
+            this.$store.dispatch("Init")
+            this.$store.dispatch("GetInfo")
             // this.$setTitle(this.$route.meta.title)
             // let windowSize = this.$util.getWindowSize()
             // let pathArr = this.$route.path.split("/")

@@ -13,12 +13,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import store from '~/store'
+const markdownIt = require('markdown-it')
 
-export default function (Vue, {
-  router,
-  head,
-  isClient
-}) {
+export default function (Vue) {
   // Set default layout as a global component
   Vue.prototype.$util = util
   Vue.prototype.$setTitle = function (title) {
@@ -29,8 +26,7 @@ export default function (Vue, {
     // }
   }
   Vue.prototype.$markdown = function (value) {
-    // return mavonEditor.markdownIt.render(value)
-    return value
+    return markdownIt.render(value)
   }
   Vue.prototype.$reload = function (context) {
     let NewPage = '/empty'

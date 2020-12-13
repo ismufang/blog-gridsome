@@ -1,4 +1,5 @@
 <template>
+<Layout>
     <div v-loading="loading">
         <el-card shadow="never" style="min-height: 400px;margin-bottom: 20px;">
             <div slot="header" class="clearfix">
@@ -45,6 +46,8 @@
 
         </el-card>
     </div>
+</Layout>
+    
 </template>
 <script>
     import UserApi from '@/api/user'
