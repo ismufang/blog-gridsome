@@ -1,5 +1,6 @@
 <template>
-    <div style="min-height: 600px" v-loading="loading">
+<Layout>
+<div style="min-height: 600px" v-loading="loading">
         <el-card shadow="never" style="margin-bottom: 20px">
             <el-input placeholder="请输入关键字" v-model="searchKey" clearable style="width: 300px"></el-input>
             <el-button @click="search" icon="el-icon-search" style="margin-left: 10px" circle plain></el-button>
@@ -48,11 +49,17 @@
             </font>
         </el-card>
     </div>
+</Layout>
+    
 </template>
 <script>
     import { mapGetters } from 'vuex'
     import GistApi from '@/api/gist'
+// import Layout from '../../../../VBlog/src/mobile_views/layout/Layout.vue'
     export default {
+  components: { 
+    //   Layout
+   },
         data() {
             return {
                 query: {

@@ -26,13 +26,13 @@ import MobileSelfMain from '@/mobile_views/self/Main'
 
 
 
-Vue.use(Router)
+// Vue.use(Router)
 
 export const constantRouterMap = [
 
     {
-        path: '/user/new',
-        redirect: '/user/new/main',
+        path: '/new/main',
+        redirect: '/new/main',
         component: Layout,
         meta: {
             type: "user",
@@ -48,8 +48,8 @@ export const constantRouterMap = [
         ]
     },
     {
-        path: '/user/social',
-        redirect: '/user/social/main',
+        path: '/social/main',
+        redirect: '/social/main',
         component: Layout,
         meta: {
             type: "user",
@@ -70,8 +70,8 @@ export const constantRouterMap = [
         ]
     },
     {
-        path: '/user/blog',
-        redirect: '/user/blog/main',
+        path: '/blog/main',
+        redirect: '/blog/main',
         component: Layout,
         meta: {
             type: "user",
@@ -102,8 +102,8 @@ export const constantRouterMap = [
         ]
     },
     {
-        path: '/user/project',
-        redirect: '/user/project/main',
+        path: '/project/main',
+        redirect: '/project/main',
         component: Layout,
         meta: {
             type: "user",
@@ -124,8 +124,8 @@ export const constantRouterMap = [
         ]
     },
     {
-        path: '/user/helper',
-        redirect: '/user/helper/main',
+        path: '/helper/main',
+        redirect: '/helper/main',
         component: Layout,
         meta: {
             type: "user",
@@ -142,8 +142,8 @@ export const constantRouterMap = [
         ]
     },
     {
-        path: '/user/readme',
-        redirect: '/user/readme/main',
+        path: '/readme/main',
+        redirect: '/readme/main',
         component: Layout,
         meta: {
             type: "user",
@@ -159,8 +159,8 @@ export const constantRouterMap = [
         ]
     },
     {
-        path: '/user/configure',
-        redirect: '/user/configure/main',
+        path: '/configure/main',
+        redirect: '/configure/main',
         component: Layout,
         meta: {
             type: "user",
@@ -185,7 +185,7 @@ export const constantRouterMap = [
     },
     {
         path: '/',
-        redirect: '/user/new',
+        redirect: '/new',
     },
     {
         path: "*",
@@ -194,8 +194,8 @@ export const constantRouterMap = [
 
     //mobile
     {
-        path: '/mobile/user/blog',
-        redirect: '/mobile/user/blog/main',
+        path: '/mobile/blog/main',
+        redirect: '/mobile/blog/main',
         component: MobileLayout,
         meta: {
             type: "mobile",
@@ -221,8 +221,8 @@ export const constantRouterMap = [
 
     },
     {
-        path: '/mobile/user/project',
-        redirect: '/mobile/user/project/main',
+        path: '/mobile/project/main',
+        redirect: '/mobile/project/main',
         component: MobileLayout,
         meta: {
             type: "mobile",
@@ -248,8 +248,8 @@ export const constantRouterMap = [
 
     },
     {
-        path: '/mobile/user/self',
-        redirect: '/mobile/user/self/main',
+        path: '/mobile/self/main',
+        redirect: '/mobile/self/main',
         component: MobileLayout,
         meta: {
             type: "mobile",
@@ -272,20 +272,21 @@ export const constantRouterMap = [
 
 
 
-const router = new Router({
-    routes: constantRouterMap,
-    scrollBehavior(to, from, savedPosition) {
-        if (to.meta.scrollTop) {
-            return { x: 0, y: 0 }
-        }
-    }
-})
+// const router = new Router({
+//     mode: 'history',
+//     routes: constantRouterMap,
+//     scrollBehavior(to, from, savedPosition) {
+//         if (to.meta.scrollTop) {
+//             return { x: 0, y: 0 }
+//         }
+//     }
+// })
 
-router.beforeEach((to, from, next) => {
-    Vue.prototype.$setTitle(to.meta.title)
-    next()
-})
+// router.beforeEach((to, from, next) => {
+//     Vue.prototype.$setTitle(to.meta.title)
+//     next()
+// })
 
 
 
-export default router
+// export default router

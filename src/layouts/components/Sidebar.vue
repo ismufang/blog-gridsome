@@ -34,6 +34,7 @@
     import { constantRouterMap } from '@/router'
     import TokenDialog from '@/pages/common/TokenDialog'
     export default {
+        name: 'SideBar',
         components: {
             TokenDialog
         },

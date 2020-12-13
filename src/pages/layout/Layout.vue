@@ -91,7 +91,8 @@
                     <sidebar></sidebar>
                 </el-col>
                 <el-col :span="18" style="padding-left:10px">
-                    <app-main></app-main>
+                    <!-- <app-main></app-main> -->
+                    <slot/>
                 </el-col>
             </el-row>
 
@@ -106,12 +107,12 @@
 <script>
     import { mapGetters } from 'vuex'
     import Sidebar from './components/Sidebar'
-    import AppMain from './components/AppMain'
+    // import AppMain from './components/AppMain'
     import Foot from './components/Foot'
     export default {
         components: {
             Sidebar,
-            AppMain,
+            // AppMain,
             Foot
         },
         data() {

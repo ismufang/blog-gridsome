@@ -1,6 +1,6 @@
 <template>
 <Layout>
-<div style="min-height: 600px" v-loading="loading">
+    <div style="min-height: 600px" v-loading="loading">
         <el-card shadow="never" style="min-height: 400px" v-if="blog.id">
             <div slot="header">
                 <span>{{blog.title}}</span>
@@ -21,52 +21,53 @@
         </el-card>
     </div>
 </Layout>
-    
 </template>
+
 <script>
-    import GistApi from '@/api/gist'
-    export default {
-        data() {
-            return {
-                query: {
-                    page: 1,
-                    pageSize: 1
-                },
-                loading: false,
-                blog: {
-                    id: "",
-                    title: "",
-                    content: "",
-                    description: "",
-                    createTime: "",
-                    updateTime: ""
-                }
+import GistApi from '@/api/gist'
+export default {
+    data() {
+        return {
+            query: {
+                page: 1,
+                pageSize: 1
+            },
+            loading: false,
+            blog: {
+                id: "",
+                title: "",
+                content: "",
+                description: "",
+                createTime: "",
+                updateTime: ""
             }
-        },
-        mounted() {
-            this.loading = true
-            GistApi.list(this.query).then((response) => {
+        }
+    },
+    mounted() {
+        console.log('store:', this.$store);
+        this.loading = true
+        GistApi.list(this.query).then((response) => {
+            let result = response.data
+            if (!result || result.length == 0) {
+                this.loading = false
+                return
+            }
+            for (let key in result[0].files) {
+                this.blog.id = result[0]['id']
+                break
+            }
+            GistApi.single(this.blog.id).then((response) => {
                 let result = response.data
-                if (!result || result.length == 0) {
-                    this.loading = false
-                    return
-                }
-                for (let key in result[0].files) {
-                    this.blog.id = result[0]['id']
+                for (let key in result.files) {
+                    this.blog['title'] = key
+                    this.blog['content'] = this.$markdown(result.files[key]['content'])
+                    this.blog['description'] = result['description']
+                    this.blog['createTime'] = this.$util.utcToLocal(result['created_at'])
+                    this.blog['updateTime'] = this.$util.utcToLocal(result['updated_at'])
                     break
                 }
-                GistApi.single(this.blog.id).then((response) => {
-                    let result = response.data
-                    for (let key in result.files) {
-                        this.blog['title'] = key
-                        this.blog['content'] = this.$markdown(result.files[key]['content'])
-                        this.blog['description'] = result['description']
-                        this.blog['createTime'] = this.$util.utcToLocal(result['created_at'])
-                        this.blog['updateTime'] = this.$util.utcToLocal(result['updated_at'])
-                        break
-                    }
-                }).then(() => this.loading = false)
-            })
-        },
-    }
+            }).then(() => this.loading = false)
+        })
+    },
+}
 </script>

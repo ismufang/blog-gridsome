@@ -1,4 +1,5 @@
 <template>
+<Layout>
     <div>
         <el-card shadow="never" style="min-height: 400px;margin-bottom: 20px;padding: 0px 0px 20px 0px">
             <el-tabs v-model="activeTab" type="card" @tab-click="onSelect">
@@ -63,6 +64,8 @@
             </el-tabs>
         </el-card>
     </div>
+</Layout>
+    
 </template>
 <script>
     import { mapGetters } from 'vuex'

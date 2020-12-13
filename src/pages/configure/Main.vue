@@ -1,5 +1,6 @@
 <template>
-    <div style="min-height: 800px" v-loading="loading">
+<Layout>
+<div style="min-height: 800px" v-loading="loading">
         <el-card shadow="never" style="min-height: 400px;margin-bottom: 20px;">
             <el-form :model="configure" :rules="rules" ref="configureForm" label-width="100px">
                 <el-tabs v-model="activeTab" type="card">
@@ -92,6 +93,8 @@
             </el-form>
         </el-card>
     </div>
+</Layout>
+    
 </template>
 <script>
     import { mapGetters } from 'vuex'

@@ -91,7 +91,8 @@
                     <sidebar></sidebar>
                 </el-col>
                 <el-col :span="18" style="padding-left:10px">
-                    <app-main></app-main>
+                    <!-- <app-main></app-main> -->
+                    <slot></slot>
                 </el-col>
             </el-row>
 
@@ -109,6 +110,7 @@
     import AppMain from './components/AppMain'
     import Foot from './components/Foot'
     export default {
+        name: 'Layout',
         components: {
             Sidebar,
             AppMain,
@@ -176,11 +178,11 @@
             }
         },
         created() {
-            this.$store.dispatch("Init")
-            this.$store.dispatch("GetInfo")
-            this.$setTitle(this.$route.meta.title)
-            let windowSize = this.$util.getWindowSize()
-            let pathArr = this.$route.path.split("/")
+            // this.$store.dispatch("Init")
+            // this.$store.dispatch("GetInfo")
+            // this.$setTitle(this.$route.meta.title)
+            // let windowSize = this.$util.getWindowSize()
+            // let pathArr = this.$route.path.split("/")
             // if (pathArr[1] == "user" && windowSize.height > windowSize.width * 1.2) {
             //     this.$router.push("/mobile/user/blog")
             // }

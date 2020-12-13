@@ -122,10 +122,11 @@ export default {
         return (m < 10 ? "0" : "") + parseInt(it / 60) + ":" + (s < 10 ? "0" : "") + parseInt(it % 60)
     },
     getWindowSize() {
-        let windowSize = {}
-        windowSize.width = window.innerWeight || document.documentElement.clientWidth || document.body.clientWidth
-        windowSize.height = window.innerWeight || document.documentElement.clientHeight || document.body.clientHeight
-        return windowSize
+        // let windowSize = {}
+        // windowSize.width = window.innerWeight || document.documentElement.clientWidth || document.body.clientWidth
+        // windowSize.height = window.innerWeight || document.documentElement.clientHeight || document.body.clientHeight
+        // return windowSize
+        return {}
     },
     addHttp(url){
         return (url.match(/https?:\/\//i)?'':'https://') + url

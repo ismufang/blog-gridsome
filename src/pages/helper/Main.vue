@@ -1,4 +1,5 @@
 <template>
+<Layout>
     <div>
         <el-card shadow="never" style="min-height: 600px;margin-bottom: 20px;">
             <el-collapse v-model="active" accordion>
@@ -44,6 +45,8 @@
             </el-collapse>
         </el-card>
     </div>
+</Layout>
+    
 </template>
 <script>
 
