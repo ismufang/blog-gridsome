@@ -1,4 +1,5 @@
 <template>
+<Layout>
     <div style="min-height: 600px" v-loading="loading">
         <el-card shadow="never" style="min-height: 400px">
             <div slot="header">
@@ -25,6 +26,8 @@
             <div v-html="blog.content" class="markdown-body" style="padding-top: 20px"></div>
         </el-card>
     </div>
+</Layout>
+    
 </template>
 <script>
     import { mapGetters } from 'vuex'

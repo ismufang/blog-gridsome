@@ -13,7 +13,7 @@ module.exports = function (api) {
   api.createPages(({ createPage }) => {
     createPage({
       path: '/blog/:id',
-      component: './src/templates/Details.vue'
+      component: './src/pages/blog/Details.vue'
     })
     createPage({
       path: '/project/:name',

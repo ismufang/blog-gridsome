@@ -13,7 +13,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import store from '~/store'
-const markdownIt = require('markdown-it')
+const markdownIt = require('markdown-it')()
 
 export default function (Vue) {
   // Set default layout as a global component
